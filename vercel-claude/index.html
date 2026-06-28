@@ -374,7 +374,7 @@ onAuthStateChanged(auth,async user=>{
     try{
       const snap=await getDoc(doc(db,"users",user.uid));
       const data=snap.exists()?snap.data():{};
-      const isPaid=data.isPaid===true&&data.paidUntil&&data.paidUntil.toDate&&data.paidUntil.toDate()>new Date();
+     const isPaid=data.paid===true;
       window._isPaid=isPaid;
     }catch(e){window._isPaid=false;}
     updateUserUI(user,window._isPaid);
