@@ -733,7 +733,7 @@ async function submitFeedback(){
   const btns=document.querySelectorAll("#s-feedback .fb-btn");
   btns[0].textContent="Sending...";btns[0].disabled=true;
   try{
-    await fetch(FORMSPREE_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({formType:"Error Report",questionId:qid,errorType:type,currentMapping:current,correctMapping:correct,notes})});
+    await fetch(FORMSPREE_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({   formType:"Error Report",email:(window._currentUser&&window._currentUser.email)||"not signed in",questionId:qid,errorType:type,currentMapping:current,correctMapping:correct,notes})});
     document.getElementById("fb-success").style.display="block";
     document.getElementById("fb-qid").value="";document.getElementById("fb-type").value="";
     document.getElementById("fb-current").value="";document.getElementById("fb-correct").value="";
